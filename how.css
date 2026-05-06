@@ -1,0 +1,81 @@
+/* Google Font */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background-color: #0f172a;
+    color: #e5e7eb;
+    line-height: 1.7;
+}
+
+/* Wrapper */
+.page-wrapper {
+    display: flex;
+    justify-content: center;
+    padding: 60px 20px;
+}
+
+/* Main Card */
+.how-card {
+    max-width: 900px;
+    width: 100%;
+    background: #020617;
+    padding: 40px;
+    border-radius: 14px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.45);
+}
+
+/* Main heading */
+.how-card h2 {
+    text-align: center;
+    font-size: 2.4rem;
+    font-weight: 600;
+    margin-bottom: 25px;
+    color: #22c55e;
+}
+
+/* Sub text */
+.sub-text {
+    text-align: center;
+    color: #cbd5f5;
+    font-size: 1rem;
+    margin-bottom: 35px;
+}
+
+/* Sections */
+.section {
+    margin-bottom: 25px;
+}
+
+.section h3 {
+    font-size: 1.4rem;
+    margin-bottom: 10px;
+    color: #38bdf8;
+}
+
+.section p {
+    font-size: 1rem;
+    color: #e2e8f0;
+    margin-bottom: 10px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .how-card {
+        padding: 25px;
+    }
+
+    .how-card h2 {
+        font-size: 2rem;
+    }
+
+    .section h3 {
+        font-size: 1.25rem;
+    }
+}

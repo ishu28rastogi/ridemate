@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Cancel Ride</title>
+
+<style>
+
+body{
+  font-family: Arial;
+  background:#f4f6f9;
+  padding:40px;
+}
+
+.container{
+  max-width:700px;
+  margin:auto;
+  background:white;
+  padding:25px;
+  border-radius:10px;
+  box-shadow:0 0 10px rgba(0,0,0,0.1);
+}
+
+h2{
+  text-align:center;
+}
+
+.passenger{
+  padding:12px;
+  border-bottom:1px solid #ddd;
+}
+
+button{
+  margin-top:20px;
+  padding:12px;
+  width:100%;
+  border:none;
+  border-radius:5px;
+  font-size:16px;
+  cursor:pointer;
+}
+
+.cancel{
+  background:red;
+  color:white;
+}
+
+.cancelAll{
+  background:black;
+  color:white;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h2>Cancel Ride</h2>
+
+<div id="ride"></div>
+
+<h3>Select passengers</h3>
+
+<div id="passengers"></div>
+
+<button class="cancel" onclick="cancelSelected()">Cancel Selected</button>
+
+<button class="cancelAll" onclick="cancelAll()">Cancel All</button>
+
+</div>
+
+<script>
+const rideId = new URLSearchParams(window.location.search).get("ride_id");
+const user = JSON.parse(localStorage.getItem("loggedInUser"));
+let passengers = [];
+
+// ===== GET PASSENGERS =====
+function loadPassengers() {
+  fetch(`http://localhost:3000/ride-passengers?ride_id=${rideId}&user_id=${user.id}`)
+    .then(res => res.json())
+    .then(data => {
+      if (!data.success) {
+        alert("Error loading passengers");
+        return;
+      }
+
+      passengers = data.passengers;
+
+      let html = "";
+      passengers.forEach(p => {
+        html += `
+          <div class="passenger">
+            <input type="checkbox" value="${p.id}">
+            ${p.passenger_name} - ${p.phone} (Seats: ${p.seats_booked})
+          </div>
+        `;
+      });
+
+      document.getElementById("passengers").innerHTML = html;
+    });
+}
+
+loadPassengers();
+
+// ===== CANCEL SELECTED =====
+function cancelSelected() {
+  let selected = [];
+  document.querySelectorAll("input:checked").forEach(cb => selected.push(parseInt(cb.value)));
+
+  if (selected.length === 0) {
+    alert("Select passengers first");
+    return;
+  }
+
+  // Get passenger names for alert message
+  const cancelledPassengers = passengers
+    .filter(p => selected.includes(p.id))
+    .map(p => p.passenger_name)
+    .join(", ");
+
+  fetch("http://localhost:3000/cancel-ride", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ ride_id: rideId, user_id: user.id, booking_ids: selected })
+  })
+  .then(res => res.json())
+  .then(data => {
+    if (data.success) {
+      alert(`Cancelled Successfully: ${cancelledPassengers}`);
+      window.location.href = "ride-history.html"; // redirect after alert
+    } else {
+      alert(data.message);
+    }
+  });
+}
+
+// ===== CANCEL ALL =====
+function cancelAll() {
+  if (passengers.length === 0) {
+    alert("No passengers found");
+    return;
+  }
+
+  if (!confirm("Cancel all bookings?")) return;
+
+  const ids = passengers.map(p => p.id);
+  const cancelledPassengers = passengers.map(p => p.passenger_name).join(", ");
+
+  fetch("http://localhost:3000/cancel-ride", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ ride_id: rideId, user_id: user.id, booking_ids: ids })
+  })
+  .then(res => res.json())
+  .then(data => {
+    if (data.success) {
+      alert(`All bookings cancelled: ${cancelledPassengers}`);
+      window.location.href = "ride-history.html"; // redirect after alert
+    } else {
+      alert(data.message);
+    }
+  });
+}
+</script>
+
+</body>
+</html>

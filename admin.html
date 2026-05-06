@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<title>RideMate Admin Dashboard</title>
+<link rel="stylesheet" href="admin.css">
+</head>
+
+<body>
+
+<div class="sidebar">
+<h2>RideMate</h2>
+
+<ul>
+<li id="dashboardBtn" class="active">Dashboard</li>
+<li id="viewUsersBtn">View Users</li>
+<li id="viewRidesBtn">View Rides</li>
+<li id="bookingsBtn">Bookings</li>
+<li id="feedbackBtn">View Feedback</li>
+<li id="logoutBtn">Logout</li>
+</ul>
+
+</div>
+
+
+<div class="main">
+
+<h1>Admin Dashboard</h1>
+
+<div class="cards">
+
+<div class="card">
+<h3>Total Users</h3>
+<p id="totalUsers">0</p>
+</div>
+
+<div class="card">
+<h3>Total Rides</h3>
+<p id="totalRides">0</p>
+</div>
+
+<div class="card">
+<h3>Total Bookings</h3>
+<p id="totalBookings">0</p>
+</div>
+
+</div>
+
+
+<div class="table-section">
+
+<h2>Recent Rides</h2>
+
+<table>
+
+<thead>
+<tr>
+<th>ID</th>
+<th>Pickup</th>
+<th>Destination</th>
+<th>Date</th>
+<th>Seats</th>
+</tr>
+</thead>
+
+<tbody id="ridesTable">
+</tbody>
+
+</table>
+
+</div>
+
+</div>
+
+
+<script src="admin.js"></script>
+
+<script>
+
+document.getElementById("logoutBtn").addEventListener("click", function(){
+
+alert("Logged out successfully");
+
+window.location.href="../authorization/auth.html";
+
+});
+
+</script>
+
+</body>
+</html>

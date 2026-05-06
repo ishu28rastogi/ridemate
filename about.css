@@ -1,0 +1,81 @@
+/* Google Font */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background-color: #0f172a; /* dark navy */
+    color: #e5e7eb;
+    line-height: 1.7;
+}
+
+/* About Section */
+#about-us {
+    max-width: 900px;
+    margin: 60px auto;
+    padding: 40px;
+    background: #020617;
+    border-radius: 14px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+}
+
+/* Headings */
+#about-us h1 {
+    font-size: 2.5rem;
+    font-weight: 600;
+    text-align: center;
+    margin-bottom: 30px;
+    color: #22c55e; /* green accent */
+}
+
+#about-us h2 {
+    font-size: 1.6rem;
+    margin-top: 30px;
+    margin-bottom: 15px;
+    color: #38bdf8; /* blue accent */
+}
+
+/* Paragraphs */
+#about-us p {
+    font-size: 1rem;
+    color: #cbd5f5;
+    margin-bottom: 15px;
+}
+
+/* Lists */
+#about-us ul {
+    margin: 15px 0 20px 20px;
+}
+
+#about-us ul li {
+    margin-bottom: 10px;
+    color: #e2e8f0;
+    position: relative;
+    padding-left: 10px;
+}
+
+/* Highlight Text */
+#about-us strong {
+    color: #22c55e;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    #about-us {
+        margin: 30px 15px;
+        padding: 25px;
+    }
+
+    #about-us h1 {
+        font-size: 2rem;
+    }
+
+    #about-us h2 {
+        font-size: 1.4rem;
+    }
+}

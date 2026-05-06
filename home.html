@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>RideMate | Home</title>
+    <link rel="stylesheet" href="home.css">
+</head>
+<body>
+
+<header class="top-bar">
+    <div class="brand">RideMate</div>
+
+    <div class="menu">
+        
+        <a href="./create/create.html">Create Ride</a>
+        
+        <div class="profile-dropdown">
+             <button class="profile-btn">
+    <span class="profile-icon">👤</span> ▾
+</button>
+            
+            <div class="dropdown-menu">
+    <a href="./profile/pr.html" id="profileLink" style="display:none;">👤 Profile</a>
+    <a href="./authorization/auth.html" id="loginLink" style="display:none;">🔑 Login</a>
+   
+
+    
+    <a href="ride-history.html" id="historyLink">📜 Ride History</a>
+
+    <a href="./logout/logout.html" id="logoutLink" class="logout" >⏻ Logout</a>
+
+</div>
+
+        </div>
+    </div>
+</header>
+
+<section class="main-section">
+
+    <!-- BOOKING BOX -->
+<div class="booking-box">
+    <h2>SEARCH RIDE</h2>
+
+    
+    <div class="input-group">
+    <input 
+        type="text" 
+        id="pickupInput" 
+        placeholder="From" 
+        oninput="getSuggestions(this.value)" 
+        autocomplete="off"
+    >
+    <div id="suggestionsBox" class="suggestions"></div>
+</div>
+  <div class="input-group">
+    <input 
+        type="text" 
+        id="destinationInput" 
+        placeholder="To" 
+        oninput="getDestinationSuggestions(this.value)" 
+        autocomplete="off"
+    >
+    <div id="destinationSuggestionsBox" class="suggestions"></div>
+</div>
+    
+    <input type="date" id="rideDate" min="">
+    
+    <select id="passengerInput">
+        <option value="1">1 Passenger</option>
+        <option value="2">2 Passengers</option>
+        <option value="3">3 Passengers</option>
+        <option value="4">4 Passengers</option>
+        <option value="5">5 Passengers</option>
+        <option value="6">6 Passengers</option>
+    </select>
+
+    <button id="searchBtn">Search Ride</button>
+</div>
+<!-- Chatbot Icon -->
+<div id="chatbotIcon" onclick="openChatbot()">
+  🤖<div id="chatbotPopup" style="display:none;">
+  <iframe src="http://localhost:5050" frameborder="0"></iframe>
+</div>
+</div>
+<!-- Chatbot Popup -->
+
+</section>
+<section class="popular-rides">
+    <h2>Where do you want to go?</h2>
+
+    <div class="rides-container">
+        
+        <div class="ride-card" data-pickup="Banasthali Vidyapith" data-destination="Jaipur">
+<span>Banasthali Vidyapith → Jaipur</span>
+<span class="arrow">›</span>
+</div>
+        <div class="ride-card" data-pickup="New Delhi" data-destination="Banasthali Vidyapith">
+<span>New Delhi → Banasthali Vidyapith</span>
+<span class="arrow">›</span>
+</div>
+
+<div class="ride-card" data-pickup="Jaipur" data-destination="Banasthali Vidyapith">
+<span>Jaipur → Banasthali Vidyapith</span>
+<span class="arrow">›</span>
+</div>
+
+<div class="ride-card" data-pickup="Banasthali Vidyapith" data-destination="Kota">
+<span>Banasthali Vidyapith → Kota</span>
+<span class="arrow">›</span>
+</div>
+    </div>
+
+    <a href="#" class="see-more">See our most popular rides</a>
+</section>
+<section class="ride-for-everyone">
+    <h2>RideMate — a ride that fits every journey.</h2>
+
+    <div class="ride-cards">
+        <div class="ride-info-card">
+            <img src="o.jpeg" alt="Budget Ride">
+            <h3>Safe & Secure</h3>
+            <p>
+                Safe rides you can trust. Especially for hostel girl students. Verified and trusted sharing.
+            </p>
+        </div>
+
+        <div class="ride-info-card">
+            <img src="n.jpeg" alt="Any Distance">
+            <h3>Travel on your time</h3>
+            <p>
+                Whether it’s a quick ride or a long journey,
+RideMate lets you move when it suits you.
+            </p>
+        </div>
+
+        <div class="ride-info-card">
+            <img src="m.jpeg" alt="Any Duration">
+            <h3>Affordable Prices</h3>
+            <p>
+                Get reliable rides at prices you’ll love.
+No surprises, just smart and affordable travel.
+            </p>
+        </div>
+    </div>
+</section>
+
+
+
+<script src="home.js"></script>
+<footer class="footer">
+    <div class="footer-container">
+
+        <div class="footer-brand">
+            <h3>RideMate</h3>
+            <p>Your trusted partner for safe, affordable and comfortable rides.</p>
+        </div>
+
+        <div class="footer-links">
+            <h4>Company</h4>
+            <a href="./aboutus/about.html">About Us</a>
+            <a href="./howitworks/how.html">How it Works</a>
+           
+        </div>
+
+        <div class="footer-links">
+            <h4>Support</h4>
+            <a href="./Help/help.html">Help Centre</a>
+
+          
+           
+        </div>
+
+        <div class="footer-links">
+            <h4>Legal</h4>
+            <a href="./privacypolicy/pr.html">Privacy Policy</a>
+            <a href="./termscon/term.html">Terms & Conditions</a>
+        </div>
+
+    </div>
+
+    <div class="footer-bottom">
+        © 2026 RideMate. All rights reserved.
+    </div>
+</footer>
+
+
+</body>
+</html>
+

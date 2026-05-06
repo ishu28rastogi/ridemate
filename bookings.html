@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<title>RideMate - Bookings</title>
+<link rel="stylesheet" href="admin.css">
+</head>
+
+<body>
+
+<!-- Sidebar -->
+<div class="sidebar">
+<h2>RideMate</h2>
+
+<ul>
+<li><a href="admin.html">Dashboard</a></li>
+<li><a href="viewuser.html">View Users</a></li>
+<li><a href="viewrides.html">View Rides</a></li>
+<li><a href="bookings.html" class="active">Bookings</a></li>
+<li><a href="feedback.html">View Feedback</a></li>
+<li><a href="#" id="logoutBtn">Logout</a></li>
+</ul>
+</div>
+
+<!-- Main Content -->
+<div class="main">
+
+<h1>All Bookings</h1>
+
+<!-- 🔥 SORT BUTTONS -->
+<div style="margin-bottom: 15px;">
+<button onclick="sortLatest()">Sort by Latest Date</button>
+<button onclick="sortOldest()">Sort by Oldest Date</button>
+</div>
+
+<table border="1">
+
+<thead>
+<tr>
+<th>ID</th>
+<th>User ID</th>
+<th>Ride ID</th>
+<th>Passenger</th>
+<th>Phone</th>
+<th>Email</th>
+<th>Seats</th>
+<th>Total</th>
+<th>Time</th>
+<th>Action</th>
+</tr>
+</thead>
+
+<tbody id="bookingsTable">
+<!-- data yaha aayega -->
+</tbody>
+
+</table>
+
+</div>
+
+<!-- JS FILE -->
+<script src="bookings.js"></script>
+
+<!-- Logout -->
+<script>
+document.getElementById("logoutBtn").addEventListener("click", function(){
+alert("Logged out successfully");
+window.location.href="../authorization/auth.html";
+});
+</script>
+
+</body>
+</html>

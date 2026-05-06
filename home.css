@@ -1,0 +1,466 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+/* HEADER */
+.top-bar {
+    background: #0b3c5d;
+    color: white;
+    padding: 15px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.profile-btn {
+    font-size: 18px;   /* overall button text */
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.profile-icon {
+    font-size: 22px;
+    color: #da0a0a;   /* icon thoda bada */
+}
+
+.menu {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+.menu a {
+    color: white;
+    text-decoration: none;
+}
+/* DROPDOWN */
+.profile-dropdown {
+    position: relative;
+}
+
+.profile-btn {
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+}
+
+
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    right: 0;
+    top: 35px;
+    background: white;
+    width: 160px;
+    border-radius: 6px;
+    box-shadow: 0 4px 10px rgba(0,0,0,.2);
+    z-index: 9999;   /* 🔥 ADD THIS */
+}
+
+.dropdown-menu a {
+    display: block;
+    padding: 10px;
+    color: black;
+    text-decoration: none;
+}
+.dropdown-menu a.disabled {
+    color: #999;
+    cursor: not-allowed;
+    pointer-events: none;   /* 🔥 click hi nahi hoga */
+}
+
+.dropdown-menu a:hover {
+    background: #f2f2f2;
+}
+.logout:hover {
+    animation: shake 0.4s;
+    color: red;
+}
+
+@keyframes shake {
+    0%   { transform: translateX(0); }
+    25%  { transform: translateX(-3px); }
+    50%  { transform: translateX(3px); }
+    75%  { transform: translateX(-3px); }
+    100% { transform: translateX(0); }
+}
+
+
+/* .profile-dropdown.active .dropdown-menu {
+    display: block;
+} */
+.dropdown-menu {
+    display: none;
+}
+
+.dropdown-menu.show {
+    display: block;
+}
+
+/* MAIN */
+.main-section {
+    display: flex;
+    min-height: calc(100vh - 70px);
+    overflow-y: auto; /* vertical scroll if content overflows */
+}
+
+/* LEFT */
+.booking-box {
+    width: 48%; /* slightly bigger for middle balance */
+    padding: 50px;
+    background: #5193b4;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.booking-box h2 {
+    margin-bottom: 30px;
+    font-size: 28px;
+    color: #0b3c5d;
+}
+
+.booking-box input,
+.booking-box select {
+    width: 100%;
+    padding: 15px;
+    margin-bottom: 20px;
+    font-size: 16px;
+    border: 1px solid #6ad7e5;
+    border-radius: 6px;
+}
+
+.booking-box button {
+    width: 100%;
+    padding: 16px;
+    font-size: 16px;
+    background: #02235c;
+    border: none;
+    color: rgb(250, 250, 250);
+    border-radius: 6px;
+    cursor: pointer;
+}
+body {
+    background: #5193b4;
+    overflow-x: hidden;
+}
+/* RIGHT IMAGE */
+.image-box {
+    width: 50%; /* adjust to fit middle space */
+    background: #5193b4;
+    
+    display: flex;
+    justify-content: center; /* leave some middle space */
+    align-items: center;
+    
+    padding: 50px; /* create breathing room from center */
+}
+
+.image-box img {
+     /* slightly smaller to avoid sticking too much */
+    width: auto;
+    height: auto;
+    max-height: 125%;
+    max-width: 120%;
+    object-fit: contain;
+}
+
+/* TEXT */
+.image-text {
+    position: absolute;
+    top: 40px;
+    right: 40px;
+    text-align: right;
+}
+
+.image-text h1 {
+    color: #1e6eff;
+}
+.popular-rides {
+    background: #0b4b57;
+    padding: 60px 40px;
+    color: white;
+    text-align: center;
+}
+
+.popular-rides h2 {
+    font-size: 32px;
+    margin-bottom: 40px;
+}
+
+.rides-container {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.ride-card {
+    background: white;
+    color: #0b4b57;
+    padding: 18px 24px;
+    width: 260px;
+    border-radius: 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 16px;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.ride-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+}
+
+.arrow {
+    font-size: 22px;
+}
+
+.see-more {
+    display: inline-block;
+    margin-top: 30px;
+    color: #7dd3fc;
+    text-decoration: none;
+    font-size: 15px;
+}
+.ride-for-everyone {
+    background: #ffffff;
+    padding: 70px 40px;
+    text-align: center;
+}
+
+.ride-for-everyone h2 {
+    font-size: 32px;
+    margin-bottom: 50px;
+    color: #0b3c5d;
+}
+
+.ride-cards {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
+}
+
+.ride-info-card {
+    width: 280px;
+    background: #f5fafc;
+    padding: 25px;
+    border-radius: 16px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.ride-info-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.12);
+}
+
+.ride-info-card img {
+    width: 120px;
+    margin-bottom: 20px;
+}
+
+.ride-info-card h3 {
+    font-size: 20px;
+    margin-bottom: 10px;
+    color: #0b3c5d;
+}
+
+.ride-info-card p {
+    font-size: 15px;
+    color: #555;
+    line-height: 1.5;
+}
+.footer {
+    background: #0b3c5d;
+    color: white;
+    padding: 50px 40px 20px;
+}
+
+.footer-container {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 30px;
+}
+
+.footer-brand {
+    max-width: 300px;
+}
+
+.footer-brand h3 {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.footer-brand p {
+    font-size: 14px;
+    color: #cbd5e1;
+    line-height: 1.6;
+}
+
+.footer-links h4 {
+    font-size: 16px;
+    margin-bottom: 12px;
+}
+
+.footer-links a {
+    display: block;
+    font-size: 14px;
+    color: #cbd5e1;
+    text-decoration: none;
+    margin-bottom: 8px;
+    transition: color 0.2s ease;
+}
+
+.footer-links a:hover {
+    color: #ffcd2b;
+}
+
+.footer-bottom {
+    text-align: center;
+    margin-top: 30px;
+    padding-top: 15px;
+    border-top: 1px solid rgba(255,255,255,0.2);
+    font-size: 13px;
+    color: #cbd5e1;
+}
+.main-section {
+    height: 100vh;
+    background: url("cabb.jpeg") no-repeat center center/cover;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+/* Dark overlay (optional but recommended) */
+.main-section::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4);
+}
+
+/* Form ko upar lane ke liye */
+.booking-box {
+    position: relative;
+    z-index: 1;
+    background: white;
+    padding: 40px;
+    border-radius: 10px;
+    width: 400px;
+}
+
+.input-group {
+    position: relative;
+    width: 100%;
+}
+
+.suggestions {
+    position: absolute;
+    top: 52px;
+    left: 0;
+    width: 100%;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.15);
+    max-height: 200px;
+    overflow-y: auto;
+    z-index: 999;
+}
+
+.suggestions div {
+    padding: 12px;
+    cursor: pointer;
+    border-bottom: 1px solid #eee;
+    font-size: 14px;
+}
+
+.suggestions div:hover {
+    background: #f5f5f5;
+}
+
+.suggestions:empty {
+    display: none;
+}
+
+/* ================= CHATBOT ICON ================= */
+
+#chatbotIcon {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: #2563eb;
+  color: white;
+  padding: 14px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 22px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+  transition: 0.3s;
+}
+
+#chatbotIcon:hover {
+  background: #03437a;
+  
+}
+
+/* ================= POPUP ================= */
+
+#chatbotPopup {
+  position: fixed;
+  bottom: 80px;
+  right: 20px;
+  width: 350px;
+  height: 500px;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+  background: white;
+  will-change: transform;
+  backface-visibility: hidden;
+}
+
+/* ================= CHAT CONTAINER ================= */
+
+.chat-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+/* HEADER */
+.header {
+  background: linear-gradient(135deg,#2563eb,#1d4ed8);
+  color: white;
+  padding: 12px;
+  font-size: 16px;
+  font-weight: bold;
+  text-align: center;
+}
+
+/* CHAT BOX */
+#chatbotPopup {
+  position: fixed;
+  bottom: 80px;
+  right: 20px;
+  width: 350px;
+  height: 500px;
+}
+
+#chatbotPopup iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+  display: block;
+}

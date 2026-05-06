@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>RideMate | Search Rides</title>
+    <link rel="stylesheet" href="result.css">
+</head>
+<body>
+
+<header class="top-bar">
+    <div class="brand">RideMate</div>
+
+    <div class="search-bar">
+        <input type="text" id="pickupInput" placeholder="Pickup">
+        <input type="text" id="destinationInput" placeholder="Destination">
+        <input type="date" id="dateInput">
+        <select id="passengerInput">
+            <option value="1">1 Passenger</option>
+            <option value="2">2 Passengers</option>
+            <option value="3">3 Passengers</option>
+            <option value="4">4 Passengers</option>
+            <option value="5">5 Passengers</option>
+            <option value="6">6 Passengers</option>
+        </select>
+        <button id="searchAgainBtn">Search</button>
+    </div>
+</header>
+
+<div class="container">
+
+    <aside class="filters">
+        <h3>Sort by</h3>
+
+        <label>
+            <input type="radio" name="sort" value="time" checked>
+            Earliest departure
+        </label>
+
+        <label>
+            <input type="radio" name="sort" value="price">
+            Lowest price
+        </label>
+
+        <label>
+            <input type="radio" name="sort" value="seats">
+            Maximum seats
+        </label>
+
+        <button id="applySortBtn" class="apply-sort-btn">Apply Sort</button>
+    </aside>
+
+    <main class="results">
+        <h3>Available Rides</h3>
+        <div id="ridesList"></div>
+
+        <div id="noRideBox" style="display:none;">
+            <p>No rides available for your search.</p>
+        </div>
+    </main>
+
+</div>
+
+<script src="result.js"></script>
+</body>
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<title>RideMate - View Users</title>
+<link rel="stylesheet" href="admin.css">
+</head>
+
+<body>
+
+<div class="sidebar">
+<h2>RideMate</h2>
+
+<ul>
+<li><a href="admin.html">Dashboard</a></li>
+<li><a href="viewuser.html" class="active">View Users</a></li>
+<li><a href="viewrides.html">View Rides</a></li>
+<li><a href="bookings.html">Bookings</a></li>
+<li><a href="feedback.html">View Feedback</a></li>
+<li><a href="#" id="logoutBtn">Logout</a></li>
+</ul>
+
+</div>
+
+<div class="main">
+
+<h1>All Users</h1>
+
+<table>
+
+<thead>
+<tr>
+<th>ID</th>
+<th>Name</th>
+<th>Email</th>
+<th>Role</th>
+<th>Action</th>
+</tr>
+</thead>
+
+<tbody id="usersTable">
+</tbody>
+
+</table>
+
+</div>
+
+<script src="viewuser.js"></script>
+
+<script>
+document.getElementById("logoutBtn").addEventListener("click", function(){
+alert("Logged out successfully");
+window.location.href="../authorization/auth.html";
+});
+</script>
+
+</body>
+</html>

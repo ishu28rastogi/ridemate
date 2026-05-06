@@ -1,0 +1,73 @@
+/* General Page Styles */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+    background-color: #0E1424;
+    color: #E1E5F2;
+}
+
+/* Wrapper for content */
+.page-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 50px 20px;
+}
+
+/* Help Card */
+.help-card {
+    background-color: #111B33;
+    border-radius: 15px;
+    padding: 40px;
+    max-width: 900px;
+    width: 100%;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+    animation: fadeInUp 1s ease forwards;
+}
+
+/* Headings */
+.help-card h2 {
+    color: #2DD07A;
+    font-size: 2.2rem;
+    margin-bottom: 20px;
+}
+
+.help-card h3 {
+    color: #4FB1FC;
+    font-size: 1.4rem;
+    margin-top: 30px;
+    margin-bottom: 15px;
+}
+
+/* Sub-text */
+.sub-text {
+    color: #C5CAD8;
+    font-size: 1rem;
+    margin-bottom: 25px;
+    line-height: 1.6;
+}
+
+/* Paragraphs inside sections */
+.section p {
+    margin-bottom: 15px;
+    line-height: 1.6;
+}
+
+/* Email highlight */
+.section strong {
+    color: #2DD07A;
+}
+
+/* Fade in animation */
+/* @keyframes fadeInUp {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+} */
+

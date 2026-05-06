@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Create Ride | RideMate</title>
+  <link rel="stylesheet" href="create.css">
+  <style>
+    /* Simple inline warning styles */
+    input:invalid, select:invalid {
+      border-color: red;
+    }
+    .error-msg {
+      color: red;
+      font-size: 0.9em;
+      display: none;
+    }
+    .error-msg.active {
+      display: block;
+    }
+  </style>
+</head>
+<body>
+<header>
+  <h1>RideMate</h1>
+</header>
+
+<main>
+  <h2>Create a Ride. Share the Journey.</h2>
+
+  <form id="rideForm" enctype="multipart/form-data" novalidate>
+    <!-- Pickup & Destination -->
+    <label>Pickup Location</label>
+    <input type="text" id="pickup" list="locations" placeholder="Enter Pickup Location" required>
+    <label>Destination</label>
+    <input type="text" id="destination" list="locations" placeholder="Enter Destination" required>
+
+    <datalist id="locations">
+      <option value="Jaipur Junction Railway Station">
+      <option value="Gandhi Nagar Jaipur Railway Station">
+      <option value="Sindhi Camp Bus Stand">
+      <option value="Jaipur International Airport (JAI)">
+      <option value="Vaishali Nagar Jaipur">
+      <option value="Malviya Nagar Jaipur">
+      
+      <option value="Civil Lines Jaipur">
+      <option value="Bani Park Jaipur">
+      <option value="Hawa Mahal Jaipur">
+   
+      <option value="City Palace Jaipur">
+      <option value="Jal Mahal Jaipur">
+      <option value="Ajmer Junction Railway Station">
+      
+      <option value="Jodhpur Junction Railway Station">
+      <option value="Kota Junction Railway Station">
+      <option value="Alwar Railway Station">
+        <option value="Banasthali Vidyapith">
+    </datalist>
+
+    <!-- Date & Time -->
+    <label>Date</label>
+    <input type="date" id="date" required>
+    <label>Time</label>
+    <input type="time" id="time" required>
+
+    <!-- Car Type & Seats -->
+    <label>Car Type</label>
+    <select id="car_type" required>
+      <option value="">Select Car Type</option>
+      <option value="5">5 Seater</option>
+      <option value="7">7 Seater</option>
+    </select>
+
+    <label>Available Seats</label>
+    <select id="seats" required>
+      <option value="">Select Seats</option>
+    </select>
+
+    <!-- Pricing -->
+    <label>Total Ride Price (₹)</label>
+    <input type="number" id="total_price" placeholder="e.g. 5000" required>
+    <label>Price per Person (₹)</label>
+    <input type="number" id="price_per_person" readonly>
+
+    <!-- Contact & Vehicle -->
+    <label>Driver's Phone Number</label>
+    <input type="tel" id="phone" placeholder="9XXXXXXXXX" required>
+    <div class="error-msg" id="phoneError">Enter valid 10-digit Indian number starting with 6-9</div>
+
+    <label>Vehicle Number</label>
+    <input type="text" id="vehicle_no" placeholder="RJ 14 AB 1234" required>
+    <div class="error-msg" id="vehicleError">Enter valid vehicle number (e.g., RJ 14 AB 1234)</div>
+
+    <!-- Licence -->
+    <label>Upload Driving Licence</label>
+    <input type="file" id="licence" accept="image/png, image/jpeg" required>
+    <div class="error-msg" id="licenceError">Upload a clear image (PNG/JPEG, min 800x400)</div>
+
+   
+
+    <button type="button" id="createRideBtn">Post Ride</button>
+  </form>
+</main>
+
+<footer>
+  <p>Split. Share. Save.</p>
+</footer>
+
+<script>
+  // --- PRICE CALCULATION ---
+  const totalPrice = document.getElementById("total_price");
+  const pricePerPerson = document.getElementById("price_per_person");
+  const carType = document.getElementById("car_type");
+  const seatsSelect = document.getElementById("seats");
+
+  function calculatePrice() {
+    const total = Number(totalPrice.value);
+    const seater = Number(carType.value);
+    if (total && seater) {
+      const passengerSeats = seater - 1;
+      
+      pricePerPerson.value = Math.ceil(total / passengerSeats);
+    } else {
+      pricePerPerson.value = "";
+    }
+  }
+  totalPrice.addEventListener("input", calculatePrice);
+  carType.addEventListener("change", calculatePrice);
+
+  // --- DYNAMIC SEATS ---
+  carType.addEventListener("change", () => {
+    const seater = Number(carType.value);
+    seatsSelect.innerHTML = '<option value="">Select Seats</option>';
+    if (!seater) return;
+    const maxSeats = seater - 1;
+    for (let i = 1; i <= maxSeats; i++) {
+      const option = document.createElement("option");
+      option.value = i;
+      option.textContent = i;
+      seatsSelect.appendChild(option);
+    }
+    seatsSelect.value = "";
+  });
+
+  // --- DATE & TIME VALIDATION ---
+  const dateInput = document.getElementById("date");
+  const timeInput = document.getElementById("time");
+  const now = new Date();
+  const yyyy = now.getFullYear();
+  const mm = String(now.getMonth()+1).padStart(2,"0");
+  const dd = String(now.getDate()).padStart(2,"0");
+  const today = `${yyyy}-${mm}-${dd}`;
+  dateInput.min = today;
+  dateInput.addEventListener("keydown", e => e.preventDefault());
+
+  function updateTimeMin() {
+    const selectedDate = dateInput.value;
+    if (selectedDate === today) {
+      const hh = String(now.getHours()).padStart(2,"0");
+      const min = String(now.getMinutes()).padStart(2,"0");
+      timeInput.min = `${hh}:${min}`;
+      if(timeInput.value<timeInput.min) timeInput.value = timeInput.min;
+    } else {
+      timeInput.min="00:00";
+    }
+  }
+  dateInput.addEventListener("change", updateTimeMin);
+  timeInput.addEventListener("input", () => {
+    if(timeInput.value<timeInput.min) timeInput.value=timeInput.min;
+  });
+
+  // --- LICENCE VALIDATION ---
+  const licenceInput = document.getElementById("licence");
+  const licenceError = document.getElementById("licenceError");
+  async function validateLicence() {
+    const file = licenceInput.files[0];
+    if(!file) { licenceError.classList.add("active"); return false; }
+    const allowedTypes = ["image/jpeg","image/png"];
+    if(!allowedTypes.includes(file.type)){ licenceError.textContent="Only JPEG/PNG allowed"; licenceError.classList.add("active"); return false; }
+    if(file.size>5*1024*1024){ licenceError.textContent="Max 5MB"; licenceError.classList.add("active"); return false; }
+    return new Promise(resolve=>{
+      const img = new Image();
+      img.src=URL.createObjectURL(file);
+      img.onload=()=> {
+        if(img.width<800 || img.height<400){ licenceError.textContent="Image too small"; licenceError.classList.add("active"); resolve(false); }
+        else { licenceError.classList.remove("active"); resolve(true); }
+      };
+      img.onerror=()=> { licenceError.textContent="Invalid image"; licenceError.classList.add("active"); resolve(false); };
+    });
+  }
+
+  // --- PHONE & VEHICLE VALIDATION ---
+  const phoneInput = document.getElementById("phone");
+  const vehicleInput = document.getElementById("vehicle_no");
+  const phoneError = document.getElementById("phoneError");
+  const vehicleError = document.getElementById("vehicleError");
+
+  phoneInput.addEventListener("input", ()=>{
+    phoneInput.value=phoneInput.value.replace(/\D/g,'').slice(0,10);
+    if(!/^[6-9]\d{0,9}$/.test(phoneInput.value)){ phoneError.classList.add("active"); }
+    else{ phoneError.classList.remove("active"); }
+  });
+
+  vehicleInput.addEventListener("input", ()=>{
+    vehicleInput.value = vehicleInput.value.toUpperCase().replace(/[^A-Z0-9 ]/g,'').slice(0,13);
+    if(!/^[A-Z]{2}\s\d{1,2}\s[A-Z]{1,2}\s\d{1,4}$/.test(vehicleInput.value)){ vehicleError.classList.add("active"); }
+    else{ vehicleError.classList.remove("active"); }
+  });
+
+  // --- FORM SUBMIT ---
+  document.getElementById("createRideBtn").addEventListener("click", async ()=>{
+  const user = JSON.parse(localStorage.getItem("loggedInUser"));
+
+  if (!user) {
+    const goLogin = confirm("Please login first to create a ride");
+
+    if (goLogin) {
+      window.location.href = "../authorization/auth.html";
+    }
+    return; // ❌ yahin ruk jao
+  }
+
+  
+    const phoneValid=/^[6-9]\d{9}$/.test(phoneInput.value);
+    const vehicleValid=/^[A-Z]{2}\s\d{1,2}\s[A-Z]{1,2}\s\d{1,4}$/.test(vehicleInput.value);
+    if(!phoneValid){ phoneError.classList.add("active"); phoneInput.focus(); return; }
+    if(!vehicleValid){ vehicleError.classList.add("active"); vehicleInput.focus(); return; }
+    const licenceValid = await validateLicence();
+    if(!licenceValid) return;
+// --- BANASTHALI VALIDATION ---
+const pickupValue = document.getElementById("pickup").value.trim().toLowerCase();
+const destinationValue = document.getElementById("destination").value.trim().toLowerCase();
+
+if (
+  pickupValue !== "banasthali vidyapith" &&
+  destinationValue !== "banasthali vidyapith"
+) {
+  alert("Either Pickup or Destination must be Banasthali ❌");
+  return;
+}
+    // Prepare FormData
+    const formData = new FormData();
+    formData.append("pickup",document.getElementById("pickup").value);
+    formData.append("destination",document.getElementById("destination").value);
+    formData.append("date",dateInput.value);
+    formData.append("time",timeInput.value);
+    formData.append("seats",seatsSelect.value);
+    formData.append("car_seater",carType.value);
+    formData.append("total_price",totalPrice.value);
+    formData.append("price_per_person",pricePerPerson.value);
+    formData.append("phone",phoneInput.value);
+    formData.append("vehicle_no",vehicleInput.value);
+    formData.append("licence",licenceInput.files[0]);
+formData.append("user_id", user.id);
+   
+    
+
+
+
+
+
+    try{
+      const res=await fetch("http://localhost:3000/create-ride",{method:"POST",body:formData});
+      const data=await res.json();
+      alert(data.message);
+      if(data.success) document.getElementById("rideForm").reset();
+    }catch(err){ console.error(err); alert("Server Error ❌"); }
+  });
+</script>
+
+</body>
+</html>
+
+
+
+
+

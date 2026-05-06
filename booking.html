@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>RideMate | Booking</title>
+<style>
+body{
+font-family: Arial, Helvetica, sans-serif;
+margin:0;
+background:linear-gradient(to bottom,#e8f0f5,#d5e1ea);
+}
+
+.container{
+width:80%;
+margin:40px auto;
+display:flex;
+gap:40px;
+}
+
+.card{
+background:white;
+padding:30px;
+border-radius:12px;
+box-shadow:0 10px 25px rgba(0,0,0,0.1);
+flex:1;
+}
+
+h2{
+margin-top:0;
+}
+
+hr{
+margin:20px 0;
+}
+
+input{
+width:100%;
+padding:10px;
+margin-bottom:12px;
+border-radius:6px;
+border:1px solid #ccc;
+}
+
+/* Passenger form spacing */
+
+#passengerForm{
+margin-top:15px;
+margin-bottom:25px;
+}
+
+.passengerTile{
+margin-bottom:15px;
+}
+
+/* ===== Passenger Buttons (BLUE) ===== */
+
+.tileHeader{
+width:100%;
+padding:14px;
+background:#1976d2;
+color:white;
+border:none;
+border-radius:10px;
+font-size:16px;
+font-weight:bold;
+display:flex;
+justify-content:space-between;
+align-items:center;
+cursor:pointer;
+transition:0.2s;
+}
+
+.tileHeader:hover{
+background:#125aa0;
+}
+
+/* Passenger form body */
+
+.tileBody{
+padding:12px;
+border:1px solid #eee;
+border-top:none;
+border-radius:0 0 10px 10px;
+background:white;
+}
+
+/* ===== Confirm Button (YELLOW) ===== */
+
+.confirmBtn{
+width:100%;
+padding:14px;
+background:#f4b400;
+border:none;
+border-radius:10px;
+font-size:16px;
+font-weight:bold;
+cursor:pointer;
+margin-top:10px;
+transition:0.2s;
+}
+
+.confirmBtn:hover{
+background:#e0a800;
+}
+</style>
+
+</head>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<!-- Ride Summary -->
+<div class="card">
+
+<h2>Ride Summary</h2>
+
+<p>Route: <span id="route"></span></p>
+
+<p>Date: <span id="date"></span></p>
+
+<p>Time: <span id="time"></span></p>
+<p>Ride Total Price: ₹ <span id="rideTotal"></span></p>
+<p>Price per Seat: ₹ <span id="price"></span></p>
+<p>Driver's Phone No.: <span id="driverPhone"></span></p>
+<p>Vehicle Number: <span id="vehicleNo"></span></p>
+<p>Passengers: <span id="passengers"></span></p>
+
+<hr>
+
+<h3>Total: ₹ <span id="total"></span></h3>
+
+</div>
+
+
+<!-- Passenger Details -->
+<div class="card">
+
+<h2>Passenger Details</h2>
+
+<div id="passengerForm"></div>
+
+<p id="emailError" style="color:red; display:none;">
+Only @banasthali.in email allowed
+</p>
+
+<button class="confirmBtn" onclick="confirmBooking()">Confirm Booking</button>
+
+
+
+</div>
+
+</div>
+
+<script src="booking.js"></script>
+
+</body>
+</html>

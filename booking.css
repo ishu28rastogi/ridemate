@@ -1,0 +1,88 @@
+/* Passenger Tiles */
+.passengerTile {
+  margin-bottom: 22px;
+}
+
+.tileHeader {
+  width: 100%;
+  padding: 14px 16px;
+  font-weight: bold;
+  font-size: 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 12px;
+  background: #f4b400;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+  transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+}
+.tileHeader:hover {
+  background: #e0a800;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+}
+.tileHeader .arrow {
+  transition: transform 0.3s;
+}
+
+.tileBody {
+  padding: 12px 16px;
+  border-top: 1px solid #eee;
+  background: #fff;
+  display: none;
+}
+.tileBody input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-size: 14px;
+  transition: border-color 0.2s;
+}
+.tileBody input:focus {
+  border-color: #f4b400;
+  outline: none;
+}
+
+/* Ride Summary Card */
+.card {
+  background: #fff;
+  padding: 28px;
+  border-radius: 12px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+  margin-bottom: 24px;
+}
+
+/* Confirm Button */
+button.confirmBtn {
+  width: 100%;
+  padding: 14px;
+  background: #f4b400;
+  border: none;
+  border-radius: 8px;
+  margin-top:25px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+button.confirmBtn:hover {
+  background: #e0a800;
+}
+
+#passengerForm{
+  margin-bottom:30px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+
+
+button{
+  margin-top:25px;
+}

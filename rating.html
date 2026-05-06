@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Rate Ride</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial;
+      background: rgba(0,0,0,0.6);
+    }
+
+    .overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .box {
+      background: #fff;
+      padding: 30px;
+      border-radius: 12px;
+      text-align: center;
+      width: 300px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.3);
+    }
+
+    h2 {
+      margin-bottom: 20px;
+    }
+
+    .stars {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      font-size: 30px;
+      cursor: pointer;
+    }
+
+    .star {
+      color: #ccc;
+    }
+
+    .star.active {
+      color: gold;
+    }
+
+    button {
+      margin-top: 20px;
+      padding: 10px 20px;
+      border: none;
+      background: black;
+      color: white;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #333;
+    }
+  </style>
+</head>
+
+<body>
+
+<div class="overlay">
+  <div class="box">
+    <h2>Rate Your Ride ⭐</h2>
+
+    <div class="stars" id="stars">
+      <span class="star" onclick="setRating(1)">★</span>
+      <span class="star" onclick="setRating(2)">★</span>
+      <span class="star" onclick="setRating(3)">★</span>
+      <span class="star" onclick="setRating(4)">★</span>
+      <span class="star" onclick="setRating(5)">★</span>
+    </div>
+<textarea id="comment" placeholder="Report an issue (if any)..."
+style="width:100%; padding:10px; border-radius:6px; margin-top:15px;"></textarea>
+    <button onclick="submitRating()">Submit</button>
+  </div>
+</div>
+
+<script>
+  let selectedRating = 0;
+
+  const stars = document.querySelectorAll(".star");
+
+  function setRating(rating) {
+    selectedRating = rating;
+
+    stars.forEach((star, index) => {
+      star.classList.toggle("active", index < rating);
+    });
+  }
+
+  function submitRating() {
+
+    if (selectedRating === 0) {
+      alert("Please select rating");
+      return;
+    }
+
+    const urlParams = new URLSearchParams(window.location.search);
+    const ride_id = urlParams.get("ride_id");
+const comment = document.getElementById("comment").value;
+
+const user = JSON.parse(localStorage.getItem("loggedInUser"));
+    fetch("http://localhost:3000/submit-feedback", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        ride_id: ride_id,
+        user_id: user.id,
+        rating: selectedRating,
+comment: comment
+      })
+    })
+    .then(res => res.json())
+    .then(data => {
+      alert(data.message);
+
+      // 🔥 redirect to home
+      window.location.href = "/frontend/home.html";
+    });
+
+  }
+</script>
+
+</body>
+</html>

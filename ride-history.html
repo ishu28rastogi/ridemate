@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>RideMate | Ride History</title>
+<link rel="stylesheet" href="ride-history.css">
+</head>
+
+<body>
+
+<header class="top-bar">
+    <div class="brand">RideMate</div>
+</header>
+
+<div class="history-container">
+
+<h2>Your Ride History</h2>
+
+<div class="tabs">
+
+
+    <button class="tab-btn active" onclick="showTab('upcoming', event)">
+Upcoming Rides
+</button>
+
+<button class="tab-btn active" onclick="showTab('completed', event)">
+Completed Rides
+</button>
+
+<button class="tab-btn active" onclick="showTab('created', event)">
+Created Rides
+</button>
+
+</div>
+
+
+<div id="upcoming" class="tab-content active">
+<div id="upcomingList"></div>
+</div>
+
+<div id="completed" class="tab-content">
+<div id="completedList"></div>
+</div>
+
+<div id="created" class="tab-content">
+<div id="createdList"></div>
+</div>
+
+</div>
+
+<script src="ride-history.js"></script>
+
+</body>
+</html>

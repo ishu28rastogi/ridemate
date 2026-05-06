@@ -1,0 +1,190 @@
+* {
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background: linear-gradient(120deg, #0f766e, #22c55e);
+    height: 100vh;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* MAIN CONTAINER */
+.container {
+    width: 800px;
+    height: 450px;
+    background: #fff;
+    border-radius: 18px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+}
+
+/* FORM CONTAINERS */
+.form-container {
+    position: absolute;
+    top: 0;
+    height: 100%;
+    width: 50%;
+    padding: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.6s ease-in-out;
+}
+
+.form-container form {
+    width: 100%;
+    max-width: 280px;
+    text-align: center;
+}
+
+/* HEADINGS */
+.form-container h2 {
+    margin-bottom: 15px;
+}
+
+/* INPUTS */
+input {
+    width: 100%;
+    padding: 11px;
+    margin: 8px 0;
+    border-radius: 7px;
+    border: 1px solid #ccc;
+    outline: none;
+    box-shadow: none;
+    background: white;
+}
+
+/* REMOVE ALL FOCUS / GREEN BORDERS */
+input:focus,
+input:focus-visible,
+input:-webkit-autofill {
+    border: 1px solid #ccc !important;
+    outline: none !important;
+    box-shadow: none !important;
+    -webkit-box-shadow: 0 0 0 1000px white inset !important;
+}
+
+/* BUTTON */
+button {
+    width: 100%;
+    padding: 11px;
+    margin-top: 12px;
+    background: #0f766e;
+    color: white;
+    border: none;
+    border-radius: 7px;
+    cursor: pointer;
+    font-size: 15px;
+}
+
+button:hover {
+    background: #065f46;
+}
+
+/* SWITCH TEXT */
+.switch {
+    display: block;
+    margin-top: 12px;
+    font-size: 14px;
+    color: #0f766e;
+    cursor: pointer;
+}
+
+/* LOGIN / REGISTER BASE */
+.login-container {
+    left: 0;
+    z-index: 2;
+}
+
+.register-container {
+    left: 0;
+    opacity: 0;
+    z-index: 1;
+    pointer-events: none;
+}
+
+/* WHEN REGISTER ACTIVE */
+.container.right-panel-active .login-container {
+    opacity: 0;
+    pointer-events: none;
+    transform: translateX(100%);
+}
+
+.container.right-panel-active .register-container {
+    transform: translateX(100%);
+    opacity: 1;
+    z-index: 5;
+    pointer-events: all;
+}
+
+/* OVERLAY */
+.overlay-container {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(120deg, #065f46, #22c55e);
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: transform 0.6s ease-in-out;
+    z-index: 100;
+}
+
+.overlay {
+    text-align: center;
+    padding: 30px;
+}
+
+.overlay h1 {
+    font-size: 32px;
+    margin-bottom: 10px;
+}
+
+/* SLIDE */
+.container.right-panel-active .overlay-container {
+    transform: translateX(-100%);
+}
+.form-container form {
+    position: relative;
+    height: 100%;
+}
+
+.form-container .switch {
+    position: absolute;
+    bottom: 12px;
+    width: 100%;
+    text-align: center;
+    cursor: pointer;
+}
+.register-container .switch {
+    margin-top: 10px;
+    display: block;
+    text-align: center;
+}
+
+
+.forgot-link {
+  display: block;
+  margin-top: 12px;
+  text-align: right;
+  font-size: 14px;
+  color: #0f9b8e;
+  text-decoration: none;
+}
+
+.forgot-link:hover {
+  text-decoration: underline;
+}
+
+
+
+
+

@@ -1,0 +1,65 @@
+* {
+  box-sizing: border-box;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: linear-gradient(to right, #0f9b8e, #2bcf6b);
+}
+
+.page-wrapper {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.logout-card {
+  background: #fff;
+  width: 380px;
+  padding: 30px;
+  border-radius: 12px;
+  text-align: center;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25);
+}
+
+.logout-card h2 {
+  margin-top: 0;
+  color: #0f9b8e;
+}
+
+.logout-card p {
+  color: #555;
+  margin: 15px 0 25px;
+}
+
+.btn-group {
+  display: flex;
+  justify-content: space-between;
+  gap: 15px;
+}
+
+.btn {
+  flex: 1;
+  padding: 10px;
+  border: none;
+  border-radius: 6px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.btn.yes {
+  background-color: #e74c3c;
+  color: white;
+}
+
+.btn.no {
+  background-color: #bdc3c7;
+  color: #333;
+}
+
+.btn:hover {
+  opacity: 0.9;
+}

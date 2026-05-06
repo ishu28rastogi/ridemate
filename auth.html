@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>RideMate | Login</title>
+    <link rel="stylesheet" href="auth.css">
+</head>
+
+<body>
+
+    <div class="container" id="container">
+
+        <div class="form-container login-container">
+           <form onsubmit="return false" autocomplete="off" id="loginForm">
+    
+    <!-- hidden autofill blockers -->
+    <input type="text" name="fakeuser" autocomplete="username" style="display:none">
+    <input type="password" name="fakepass" autocomplete="new-password" style="display:none">
+                <h2>Welcome Back!</h2>
+                <input 
+    id="loginEmail"
+    name="username"
+    type="text"
+    placeholder="Email"
+    autocomplete="off"
+>
+
+<input 
+    id="loginPassword"
+    name="password"
+    type="password"
+    placeholder="Password"
+    autocomplete="new-password"
+>
+                <button type="button" onclick="loginUser()">Login</button>
+                <a href="./forgot-password.html" class="forgot-link">Forgot Password?</a>
+                <span class="switch" onclick="showRegister()">New user? Register</span>
+                
+                
+
+
+
+
+            </form>
+        </div>
+
+        <div class="form-container register-container">
+            <form onsubmit="return false">
+                <h2>Create Account</h2>
+                
+                <input id="name" type="text" placeholder="Enter your name" required>
+<small id="nameError" style="color:red; display:none;">
+    Only alphabets are allowed
+</small>
+                <input 
+    id="email"
+    type="email"
+    name="registerEmail"
+    placeholder="Enter your Banasthali Email"
+    autocomplete="new-email"
+>
+                <input id="userid" placeholder="Smart Card ID">
+                <input 
+    id="password"
+    type="password"
+    name="registerPassword"
+    placeholder="Password"
+    autocomplete="new-password"
+>
+                <small id="passwordError" style="color:red; display:none;">
+Password must be 8+ characters, include uppercase, lowercase, number & special character.
+</small>
+                <!-- OTP SECTION -->
+                <input id="otp" placeholder="Enter OTP" style="display:none;">
+                <button type="button" id="verifyBtn" style="display:none;" onclick="verifyOtp()">
+                    Verify OTP
+                </button>
+
+                <button type="button" id="registerBtn" onclick="registerUser()">Register</button>
+                <span class="switch" id="loginSwitch" onclick="showLogin()">
+    Already registered? Login
+</span>
+            </form> 
+        </div>
+
+        <div class="overlay-container">
+            <div class="overlay">
+                <h1>RideMate</h1>
+                <p>Smart ride starts here.</p>
+            </div>
+        </div>
+
+    </div>
+
+    <script src="auth.js"></script>
+</body>
+
+</html>
